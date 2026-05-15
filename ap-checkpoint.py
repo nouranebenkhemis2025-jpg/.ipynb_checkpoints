@@ -91,9 +91,9 @@ page = st.sidebar.radio(
      "📊 Performance",
      "📉 Volatilité",
      "⚖️ Sharpe",
-     "🏆 Top entreprises",
+     "🏆 10 Top entreprises",
      "🌐 Corrélation",
-     "📋 Données"]
+     "📋 Données Filtrée"]
 )
 
 # Filtre par année : charge le bon DataFrame et les KPI associés
