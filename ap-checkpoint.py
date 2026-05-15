@@ -4,15 +4,15 @@ import pandas as pd     # manipulation et analyse des données tabulaires
 import numpy as np      # calculs numériques (ex: annualisation de la volatilité)
 import matplotlib.pyplot as plt  # tracé des graphiques (barres, courbes)
 import seaborn as sns   # heatmap pour la matrice de corrélation
-
+# Partie 1: nettoyage 
 # Configuration générale de la page Streamlit
-# layout="wide" permet d'utiliser toute la largeur de l'écran
+
 st.set_page_config(#titrre pour la page
     page_title="Dashboard Boursier BVMT",
      page_icon="📈",
     layout="wide"
 )
-
+#Partie 1 : nettoyage 
 # Chargement et nettoyage des données 
 # @st.cache_data évite de recharger les fichiers à chaque interaction utilisateur
 @st.cache_data
