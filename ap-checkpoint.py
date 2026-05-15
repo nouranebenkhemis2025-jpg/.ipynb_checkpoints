@@ -7,8 +7,9 @@ import seaborn as sns   # heatmap pour la matrice de corrélation
 
 # Configuration générale de la page Streamlit
 # layout="wide" permet d'utiliser toute la largeur de l'écran
-st.set_page_config(
-    page_title="Dashboard Boursier",
+st.set_page_config(#titrre pour la page
+    page_title="Dashboard Boursier BVMT",
+     page_icon="📈",
     layout="wide"
 )
 
@@ -35,15 +36,15 @@ def load_data():
         df = df.sort_values("SEANCE")
         # Calculer le rendement journalier en % : (clôture - ouverture) / ouverture * 100
         df['RENDEMENT_J'] = (
-            (df['CLOTURE'] - df['OUVERTURE']) / df['OUVERTURE'] * 100
+            (df['CLOTURE'] - df['OUVERTURE']) / df['OUVERTURE'] * 100#ajouter de nouvelle colonne
         )
         return df
 
-    # Charger les trois fichiers CSV annuels et les nettoyer
+    
     df23 = clean(pd.read_csv("2023.csv", sep=";"))
     df24 = clean(pd.read_csv("2024.csv", sep=";"))
     df25 = clean(pd.read_csv("2025.csv", sep=";"))
-    return df23, df24, df25
+    return df23, df24, df25#nettoyer les doner et les recharger
 
 
 df23, df24, df25 = load_data()
@@ -166,7 +167,7 @@ if page == "📈 Prix":
     st.pyplot(fig)
 
 
-#Page 2 : Performance annuelle (KPI 1)
+#Page 2 :sur le KPI 1 on fait la performance
 elif page == "📊 Performance":
     st.header("KPI 1 - Performance")
 
