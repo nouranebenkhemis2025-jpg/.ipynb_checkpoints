@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt  # tracé des graphiques (barres, courbes)
 import seaborn as sns   # heatmap pour la matrice de corrélation
 # Partie 1: nettoyage 
 # Configuration générale de la page Streamlit
-
-st.set_page_config(#titrre pour la page
+#titrre pour la page
+st.set_page_config(
     page_title="Dashboard Boursier BVMT",
      page_icon="📈",
     layout="wide"
@@ -93,6 +93,7 @@ page = st.sidebar.radio(
      "⚖️ Sharpe",
      "🏆 Top entreprises",
      "🌐 Corrélation",
+     "🎯 Scoring",
      "📋 Données"]
 )
 
@@ -368,9 +369,25 @@ elif page == "🌐 Corrélation":
     sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
 
     st.pyplot(fig)
-
-
-# Page 7 : Données brutes filtrées 
+#page7:scooring
+elif page == "🎯 Scoring":
+    st.header("🎯 Scoring Global — Classement composite")
+ 
+    st.markdown("""
+    Le *score composite* combine les 3 KPI normalisés (0–100) avec la pondération suivante :
+    - 🏅 *Performance* : 40 %
+    - 📉 *Volatilité* (inversée — moins = mieux) : 30 %
+    - ⚖️ *Sharpe* : 30 %
+    """)
+    st.divider()
+ 
+    # --- Construction du DataFrame des KPI complets ---
+    df_score = pd.DataFrame({
+        "Performance (%)": kpi1,
+        "Volatilité (%)": kpi2,
+        "Sharpe": kpi3
+    }).dropna()
+# Page 8 : Données brutes filtrées 
 elif page == "📋 Données":
     st.header("Données filtrées")
     st.dataframe(df_filtre)
